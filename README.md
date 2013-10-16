@@ -1,7 +1,5 @@
-ProcessLanguageTranslatorPlus
+Process Language Translator Plus
 ===========================
-
-### Language Support Modul for Processwire (CMS)
 
 - Version 1.0.0
 - Release State: beta
@@ -12,11 +10,8 @@ path: admin/setup/language-translator/add/
 
 ### How to Install:
 - loadup module to: directory wire/modules/LanguageSupport/
-
 - goto pages -> admin -> setup -> language-translator -> edit -> process
-
 - choose 'ProcessLanguageTranslatorPlus' from the list and save
-
 - Done!
 
 
