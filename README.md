@@ -9,9 +9,9 @@ Same like Language Translator Modul. You will get a drop-down list to select tra
 path: admin/setup/language-translator/add/
 
 ### How to Install:
-- loadup module to: directory wire/modules/LanguageSupport/
-- goto pages -> admin -> setup -> language-translator -> edit -> process
-- choose 'ProcessLanguageTranslatorPlus' from the list and save
+- load up module to directory: wire/modules/LanguageSupport/
+- go to: pages -> admin -> setup -> language-translator -> edit -> process
+- choose: 'ProcessLanguageTranslatorPlus' from the list and save
 - Done!
 
 
