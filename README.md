@@ -1,9 +1,9 @@
 ProcessLanguageFileSelector
 ===========================
 
-#Language Support Modul for Processwire (CMS)
+##Language Support Modul for Processwire (CMS)
 
-Version 1.0.0
++Version 1.0.0
 Release State: beta
 
 Same like Language Translator Modul. You will get a drop-down list to select translatable files instead of text field.
