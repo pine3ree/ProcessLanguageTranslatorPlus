@@ -12,18 +12,19 @@
  * http://www.processwire.com
  * http://www.ryancramer.com
  * 
+ *
  * customized by Christoph Thelen 2013
  */
 
-class ProcessLanguageFileSelector extends ProcessLanguageTranslator  {
+class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 	public static function getModuleInfo() {
 		return array(
-			'title' => 'Language Translator Select', 
-			'summary' => 'Same like Language Translator Modul. You will get a drop-down list to select translatable files instead of text field', 
+			'title' => 'Language Translator Plus', 
+			'summary' => 'Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator. To add translatable files you will get a drop-down list instead of a text field', 
 			'version' => 100, 
 			'author' => 'Christoph Thelen',
-			'requires' => 'LanguageSupport, ProcessLanguageTranslator',
+			'requires' => 'ProcessLanguageTranslator',
 			); 
 	}
 
