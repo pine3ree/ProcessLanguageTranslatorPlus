@@ -28,5 +28,8 @@ admin/setup/language-translator/add/?language_id=1022
 
 language_id should be a valid language->id on your system.
 
+### Done:
+Language Switcher
+
 
 
