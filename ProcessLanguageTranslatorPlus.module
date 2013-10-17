@@ -21,7 +21,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Language Translator Plus', 
-			'summary' => 'Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator. To add translatable files you will get a drop-down list instead of a text field', 
+			'summary' => __('Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator. To add translatable files you will get a drop-down list instead of a text field'), 
 			'version' => 100, 
 			'author' => 'Christoph Thelen',
 			'requires' => 'ProcessLanguageTranslator',
@@ -31,14 +31,17 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	/**
 	 * Initialize the module and setup translateLanguageID
 	 *
+	 * if language specified as a GET var in the URL, then pick it up and use it (will be stored in session)
+	 * else, if there exist a session var (translateLanguageID) tis will be used
+	 * else as default use the language of logged-in user
+	 *
 	 */
 	public function init() {
-
-		// if language specified as a GET var in the URL, then pick it up and use it (storing in session)
-		if($id = $this->input->get->language_id) $this->setLanguage((int) $id); 
-			else if($this->session->translateLanguageID) $this->setLanguage($this->session->translateLanguageID); 
-			else $this->setLanguage($this->user->language->id); 
-			// else throw new WireException("No language specified"); 
+		// should the following to be sanitized?
+		if($this->input->get->language_id) $this->setLanguage((int) $this->input->get->language_id);
+		else if($this->session->translateLanguageID) $this->setLanguage($this->session->translateLanguageID); 
+		else $this->setLanguage($this->user->language->id); 
+		// else throw new WireException("No language specified"); 
 	}
 
 	/**
@@ -118,18 +121,18 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 		$form = $this->modules->get("InputfieldForm"); 
 		$form->attr('method', 'post'); 
 		$form->attr('action', "./?language_id={$this->language->id}"); 
-		$form->description = sprintf("Add new file to translate to %s", $this->language->title);
+		$form->description = sprintf(__("Add new file to translate to %s"), $this->language->title);
 	
 		$field = $this->modules->get("InputfieldSelect");
 		$field->attr('name', 'filename');
-		$field->label = sprintf(_n('%s File to translate', '%s Files to translate', count($files,COUNT_RECURSIVE)-count($files,0)),count($files,COUNT_RECURSIVE)-count($files,0));
-		$field->description = "Select translatable file from the list below.";
+		$field->label = sprintf(_n('%d File to translate', '%d Files to translate', count($files,COUNT_RECURSIVE)-count($files,0)),count($files,COUNT_RECURSIVE)-count($files,0));
+		$field->description = __("Select translatable file from the list below.");
 		$field->addOptions($files);
 		$form->add($field);
 
 		$submit = $this->modules->get("InputfieldSubmit"); 
 		$submit->attr('name', 'submit_add'); 
-		$submit->attr('value', 'Add File'); 
+		$submit->attr('value', __('Add File')); 
 		$form->add($submit); 
 
 		if($this->input->post->submit_add) $this->processAdd($field);
