@@ -37,8 +37,6 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 		// if language specified as a GET var in the URL, then pick it up and use it (storing in session)
 		if($id = $this->input->get->language_id) $this->setLanguage((int) $id); 
 			else if($this->session->translateLanguageID) $this->setLanguage($this->session->translateLanguageID); 
-			
-			//set to user language by default, good idea??
 			else $this->setLanguage($this->user->language->id); 
 			// else throw new WireException("No language specified"); 
 	}
@@ -79,9 +77,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	     	// put to the result array if file contains translatable phrases
 	      if($this->parseTranslatableFile($dir.$file)) {
 	        $json = $this->translator->filenameToTextdomain(substr($dir, strlen($rootpath)).$file).'.json';
-	        //echo LANGPATH.$lang_id.'/'.$json;
 	        if(!file_exists($transfilepath.$lang_id.'/'.$json)) {
-	        	//$result[] = $json;
 	        	$result[substr($dir, strlen($rootpath))][substr($dir, strlen($rootpath)).$file] = $file;
 	        }
 	      }
@@ -91,15 +87,16 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	}
 
 	/**
-	 * search in wire and site directories for translatable files
-	 *
+	 * select directories including translatable files
+	 * 
+	 * 
 	 */
 	protected function ___processSelect() {
 		$result = array();
 		$dirs = array();
-		$dirs[] = $this->config->paths->root.'wire/'; 
-		$dirs[] = $this->config->paths->templates;
-		$dirs[] = $this->config->paths->siteModules;
+		$dirs[] = $this->config->paths->root.'wire/'; // wire/
+		$dirs[] = $this->config->paths->templates; // site/templates (multisite compatible)
+		$dirs[] = $this->config->paths->siteModules; // site/modules (multisite compatible)
 		foreach ($dirs as $key=>$dir) {
 			$result = $this->findTransFiles($dir ,$this->language->id);
 		}
@@ -108,6 +105,8 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 	/**
 	 * Add a new class file to translate (creating a new textdomain file)
+	 * 
+	 * modified function of ___executeAdd() in ProcessLanguageTranslator
 	 * text inputfield changed to select field by ct 15.10.13
  	 * URL: setup/language-translator/add/
 	 *
