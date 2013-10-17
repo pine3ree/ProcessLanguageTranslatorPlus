@@ -112,7 +112,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 			if ($language->id == $this->session->translateLanguageID) continue;
 			else $lang .= "\t<a href=\"{$this->page->url}add/?language_id={$language->id}\">{$language->title}</a><br/>\n";
 		}
-		return "\n<h2>".__("Choose another language to translate")."</h2>\n<p>\n{$lang}<p>\n";
+		return "\n<h2>".__("Choose another language to translate below")."</h2>\n<p>\n{$lang}<p>\n";
 	}
 
 	/**
@@ -130,18 +130,18 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 		$form = $this->modules->get("InputfieldForm"); 
 		$form->attr('method', 'post'); 
 		$form->attr('action', "./?language_id={$this->language->id}"); 
-		$form->description = sprintf(__("Add new file to translate to %s"), $this->language->title);
+		$form->description = $this->language->title;
 	
 		$field = $this->modules->get("InputfieldSelect");
 		$field->attr('name', 'filename');
-		$field->label = sprintf(_n('%d File to translate', '%d Files to translate', count($files,COUNT_RECURSIVE)-count($files,0)),count($files,COUNT_RECURSIVE)-count($files,0));
-		$field->description = __("Select translatable file from the list below.");
+		$field->label = sprintf(_n('%d file have not been translated to %s yet', '%d files have not been translated to %s yet', count($files,COUNT_RECURSIVE)-count($files,0),$this->language->title),count($files,COUNT_RECURSIVE)-count($files,0),$this->language->title);
+		$field->description = __("Select untranslated File from the list below.");
 		$field->addOptions($files);
 		$form->add($field);
 
 		$submit = $this->modules->get("InputfieldSubmit"); 
 		$submit->attr('name', 'submit_add'); 
-		$submit->attr('value', __('Add File')); 
+		$submit->attr('value', __('Create Translation File and open Editor')); 
 		$form->add($submit); 
 
 		if($this->input->post->submit_add) $this->processAdd($field);
