@@ -19,7 +19,7 @@ path: admin/setup/language-translator/add/
 Implement Switcher to select another Language in the Translator
 
 ##### current-settings:
-If language specified as a GET var in the URL, the Module will pick it up and use it (will be stored in session), 
+If language specified as a GET var in the URL, the Module will pick it up and use it (will be stored in session),
 else if there exists a session var (translateLanguageID) this will be used,
 else as default-setting the language of logged-in user will be used
 
