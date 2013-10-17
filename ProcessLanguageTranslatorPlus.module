@@ -27,16 +27,22 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 			'requires' => 'ProcessLanguageTranslator',
 			); 
 	}
-
+	
 	/**
-	 * translate filename to json-filename
+	 * Initialize the module and setup translateLanguageID
 	 *
 	 */
-	protected function ___jsonName($file) {
-	  $json = str_replace('/', '--', str_replace('.', '-', strtolower($file))).'.json';
-	  return $json;
+	public function init() {
+
+		// if language specified as a GET var in the URL, then pick it up and use it (storing in session)
+		if($id = $this->input->get->language_id) $this->setLanguage((int) $id); 
+			else if($this->session->translateLanguageID) $this->setLanguage($this->session->translateLanguageID); 
+			
+			//set to user language by default, good idea??
+			else $this->setLanguage($this->user->language->id); 
+			// else throw new WireException("No language specified"); 
 	}
-	
+
 	/**
 	 * find translatable files, without pendant json-file
 	 *
@@ -72,7 +78,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	      }
 	     	// put to the result array if file contains translatable phrases
 	      if($this->parseTranslatableFile($dir.$file)) {
-	        $json = $this->jsonName(substr($dir, strlen($rootpath)).$file);
+	        $json = $this->translator->filenameToTextdomain(substr($dir, strlen($rootpath)).$file).'.json';
 	        //echo LANGPATH.$lang_id.'/'.$json;
 	        if(!file_exists($transfilepath.$lang_id.'/'.$json)) {
 	        	//$result[] = $json;
