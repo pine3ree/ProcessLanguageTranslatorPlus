@@ -11,13 +11,12 @@ path: [/admin/setup/language-translator/add/]()
 
 ### How to Install:
 - load up module to directory: [/wire/modules/LanguageSupport/]()
-- open Admin
-- go to: *modules*  
-  install Module: Language Translator Plus (headline: Process)
-- go to: *pages > admin > setup > language-translator > settings > status*  
+- go to *Modules > Check for new modules*
+  install Module Language Translator Plus (headline: Process)
+- go to *Pages > Admin > Setup > Language-Translator > Settings > Status*  
   uncheck *locked* (reverse this change after the next step)
-- go to: *pages > admin > setup > language-translator > edit > process*
-  choose: **ProcessLanguageTranslatorPlus** from the list and save
+- go to *Pages > Admin > Setup > Language-Translator > Edit > Process*
+  choose **ProcessLanguageTranslatorPlus** from the list and save
 - Done!
 
 #### Do not uninstall the original **LanguageTranslator** in the Module settings, it is **required**!
