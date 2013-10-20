@@ -16,9 +16,9 @@ path: [/admin/setup/language-translator/add/]()
 - select: Language Translator Plus (headline: Process)
 - install Module.
 - go to: *pages > admin > setup > language-translator > settings > status*
-- uncheck locked/ reverse this change after the next step
+  uncheck locked/ reverse this change after the next step
 - go to: *pages > admin > setup > language-translator > edit > process*
-- choose: **ProcessLanguageTranslatorPlus** from the list and save
+  choose: **ProcessLanguageTranslatorPlus** from the list and save
 - Done!
 - Do not uninstall the original **LanguageTranslator** in the Module settings, it is **required**!
 
