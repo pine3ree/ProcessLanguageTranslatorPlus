@@ -31,5 +31,5 @@ Click the Button below to create a translation file and go directly to the Edito
 Via the Language-Switcher you can easily switch to the Translator of another Language. 
 
 ### Roadmap:
-- Link to download zipped Language-Pack created from the current Edition.
+- To build a Button in Language Translator to download zipped Language-Pack created from the current Edition.
 - output of further Information (translation files without original, duplikates)
