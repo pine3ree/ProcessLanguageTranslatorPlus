@@ -28,7 +28,9 @@ If you are in the Language Translator [/admin/setup/language-translator/](#) you
 Click Button "Translate New File" to reach the Translate File Selector [/admin/setup/language-translator/add](#).  
 Select a not yet translated file from the list.  
 Click the Button below to create a translation file and go directly to the Editor.  
-Via the Language-Switcher you can easily switch to the Translator of another Language.  
+Via the Language-Switcher you can easily switch to the Translator of another Language. 
+
+![Module Screenshot](http://processwire.com/talk/index.php?app=core&module=attach&section=attach&attach_rel_module=post&attach_id=1818)
 
 ### Roadmap:
 - providing a Button in the Language Translator to download a zipped Language-Pack created from the current Edition. 
