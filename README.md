@@ -6,7 +6,7 @@ Process Language Translator Plus
 - requires: ProcessLanguageTranslator
 
 Same like Language Translator Modul. You will get a drop-down list to select translatable files instead of text field.  
-path: admin/setup/language-translator/add/
+path: [/admin/setup/language-translator/add/](#)
 
 
 ### How to Install:
@@ -25,11 +25,10 @@ path: admin/setup/language-translator/add/
 
 ### Use:
 If you are in the Language Translator [/admin/setup/language-translator/](#) you can see a List of Files which are already translated (in the set language).  
-Click Button "Translate New File" to reach the Translate File Selector [/admin/setup/language-translator/add](#).
-Select a not yet translated file from the list.  
-Click the Button below to create a translation file and go directly to the Editor.
-Via the Language-Switcher you can easily switch to the Translator of another Language.
-
+Click Button "Translate New File" to reach the Translate File Selector [/admin/setup/language-translator/add](#). 
+Select a not yet translated file from the list. 
+Click the Button below to create a translation file and go directly to the Editor. 
+Via the Language-Switcher you can easily switch to the Translator of another Language. 
 
 ### Roadmap:
 - Link to download zipped Language-Pack created from the current Edition.
