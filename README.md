@@ -13,14 +13,13 @@ path: [/admin/setup/language-translator/add/]()
 - load up module to directory: [/wire/modules/LanguageSupport/]()
 - open Admin
 - go to: *modules*
-- select: Language Translator Plus (headline: Process)
-- install Module.
+  install Module: Language Translator Plus (headline: Process)
 - go to: *pages > admin > setup > language-translator > settings > status*
   uncheck locked/ reverse this change after the next step
 - go to: *pages > admin > setup > language-translator > edit > process*
   choose: **ProcessLanguageTranslatorPlus** from the list and save
 - Done!
-- Do not uninstall the original **LanguageTranslator** in the Module settings, it is **required**!
+##### Do not uninstall the original **LanguageTranslator** in the Module settings, it is **required**!
 
 ### Settings (developers info):
 - If language specified as a GET var in the URL, the Module will pick it up and use it (will be stored in session),
