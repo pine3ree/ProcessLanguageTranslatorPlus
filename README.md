@@ -24,8 +24,8 @@ path: admin/setup/language-translator/add/
   admin/setup/language-translator/add/?language_id=1022  
 
 ### Use:
-If you are in the Language Translator [#](/admin/setup/language-translator/) you can see a List of Files which are already translated (in the set language).  
-Click Button "Translate New File" to reach the Translate File Selector [#](/admin/setup/language-translator/add).
+If you are in the Language Translator [/admin/setup/language-translator/](#) you can see a List of Files which are already translated (in the set language).  
+Click Button "Translate New File" to reach the Translate File Selector [/admin/setup/language-translator/add](#).
 Select a not yet translated file from the list.  
 Click the Button below to create a translation file and go directly to the Editor.
 Via the Language-Switcher you can easily switch to the Translator of another Language.
