@@ -6,11 +6,11 @@ Process Language Translator Plus
 - requires: ProcessLanguageTranslator
 
 Same like **Language Translator Modul**. You will get a drop-down list to select translatable files instead of text field.  
-path: [/admin/setup/language-translator/add/]()
+path: [/admin/setup/language-translator/add/](#stay)
 
 
 ### How to Install:
-- load up module to directory: [/wire/modules/LanguageSupport/]()
+- load up module to directory: [/wire/modules/LanguageSupport/](#stay)
 - go to *Modules > Check for new modules*
   install Module Language Translator Plus (headline: Process)
 - go to *Pages > Admin > Setup > Language-Translator > Settings > Status*  
@@ -26,11 +26,11 @@ path: [/admin/setup/language-translator/add/]()
 - else if there exists a session var (translateLanguageID) this will be used,
 - else as default-setting the language of logged-in user will be used.  
   change Language with GET Parameter like:  
-  [admin/setup/language-translator/add/?language_id=1022]() 
+  [admin/setup/language-translator/add/?language_id=1022](#stay) 
 
 ### Use:
-If you are in the Language Translator [/admin/setup/language-translator/]() you can see a List of Files which are already translated (in the set language).    
-Click Button **Translate New File** to reach the Translate File Selector [/admin/setup/language-translator/add]().  
+If you are in the Language Translator [/admin/setup/language-translator/](#stay) you can see a List of Files which are already translated (in the set language).    
+Click Button **Translate New File** to reach the Translate File Selector [/admin/setup/language-translator/add](#stay).  
 Select a not yet translated file from the list.  
 Click the Button below to create a translation file and go directly to the Editor.  
 Via the Language-Switcher you can easily switch to the Translator of another Language. 
