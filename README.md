@@ -10,7 +10,7 @@ path: [/admin/setup/language-translator/add/]()
 
 
 ### How to Install:
-- load up module to directory: [/wire/modules/LanguageSupport/]()
+- load up module to directory: [/wire/modules/LanguageSupport/][]
 - go to *Modules > Check for new modules*
   install Module Language Translator Plus (headline: Process)
 - Done!
