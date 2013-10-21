@@ -14,6 +14,8 @@
  * 
  *
  * customized by Christoph Thelen 2013
+ *
+ * 21.10.13 install routine added (process for page 'language translator' autoswitch)
  */
 
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
@@ -21,7 +23,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Language Translator Plus', 
-			'summary' => __('Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator. To add translatable files you will get a drop-down list instead of a text field.'), 
+			'summary' => __("Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator module. To add a translation you will get a drop-down list of all untranslated files instead of a text field."), 
 			'version' => 100, 
 			'author' => 'Christoph Thelen',
 			'requires' => 'ProcessLanguageTranslator',
@@ -146,5 +148,27 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 		if($this->input->post->submit_add) $this->processAdd($field);
 		return $form->render().$this->switchLang();
+	}
+
+	/**
+     *
+     * install routine
+     */
+    public function ___install() {
+		$p = $this->pages->get("template=admin, name=language-translator");
+		//$p->status == 20;	//no need to change status	
+		$p->process = "ProcessLanguageTranslatorPlus";
+		$p->save();
+	}
+
+	/**
+     *
+     * uninstall routine
+     * default settings
+     */
+	public function ___uninstall() {
+		$p = $this->pages->get("template=admin, name=language-translator");
+		$p->process = "ProcessLanguageTranslator";
+		$p->save();
 	}
 }
