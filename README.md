@@ -13,10 +13,6 @@ path: [/admin/setup/language-translator/add/]()
 - load up module to directory: [/wire/modules/LanguageSupport/]()
 - go to *Modules > Check for new modules*
   install Module Language Translator Plus (headline: Process)
-- go to *Pages > Admin > Setup > Language-Translator > Settings > Status*  
-  uncheck *locked* (reverse this change after the next step)
-- go to *Pages > Admin > Setup > Language-Translator > Edit > Process*
-  choose **ProcessLanguageTranslatorPlus** from the list and save
 - Done!
 
 #### Do not uninstall the original **LanguageTranslator** in the Module settings, it is **required**!
@@ -40,3 +36,6 @@ Via the Language-Switcher you can easily switch to the Translator of another Lan
 ### Roadmap:
 - providing a Button in the Language Translator to download a zipped Language-Pack created from the current Edition. 
 - output of further Information (translation files without original, duplikates)
+
+### Updates:
+- 21.10.13 install/ uninstall routine added/ change of process in page language-translator not necessary anymore
