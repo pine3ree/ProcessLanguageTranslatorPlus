@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ProcessWire Language Translator Process 
  *
@@ -13,15 +14,21 @@
  * 
  *
  * customized by Christoph Thelen 2013
- * fixed bug 08.11.13 in function __switchlang() undefined variable
+ *
+ * changelog
+ * 21.10.13 install routine added (process for page 'language translator')
+ * 08.11.13 fixed bug in function __switchlang() undefined variable
+ * 08.11.13 fixed bug in function init() Error: Unknown/invalid language session->translateLanguageID has to be set
+ * 08.11.13 install routine changes status of page 'language translator' to visible
  */
 
+var_dump($this->page->status);
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Language Translator Plus', 
-			'summary' => __('Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator. To add translatable files you will get a drop-down list instead of a text field.'), 
+			'summary' => __("Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator module. To add a translation you will get a drop-down list of all untranslated files instead of a text field."), 
 			'version' => 100, 
 			'author' => 'Christoph Thelen',
 			'requires' => 'ProcessLanguageTranslator',
@@ -34,14 +41,14 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	 *
 	 * if language specified as a GET var in the URL, the Module will pick it up and use it (will be stored in session),
 	 * else, if there exists a session var (translateLanguageID) this will be used,
-	 * else as default-setting the language of logged-in user will be used
+	 * else as default-setting use the language of logged-in user will be used
 	 *
 	 */
 	public function init() {
 		// should the following to be sanitized?
 		if($this->input->get->language_id) $this->setLanguage((int) $this->input->get->language_id);
-		else if($this->session->translateLanguageID) $this->setLanguage($this->session->translateLanguageID); 
-		else $this->setLanguage($this->user->language->id); 
+		if(!$this->session->translateLanguageID) $this->session->translateLanguageID = $this->user->language->id;
+		$this->setLanguage($this->session->translateLanguageID); 
 		// else throw new WireException("No language specified"); 
 	}
 
@@ -107,20 +114,20 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 		return $result;
 	}
 
-	/**
-	 * switcher to other languages if exists
-	 * 
-	 * 
-	 */
-	protected function ___switchLang() {
-		$multilang = "";
-		foreach ($this->languages as $language) {
-			if ($language->id == $this->session->translateLanguageID) continue;
-			else $multilang .= "\t<a href=\"{$this->page->url}add/?language_id={$language->id}\">{$language->title}</a><br/>\n";
-		}
-		if ($multilang != "") $multilang = "\n<h2>".__("Choose another language to translate below")."</h2>\n<p>\n{$multilang}<p>\n";
-		return $multilang;
-	}
+        /**
+         * switcher to other languages if exists
+         *
+         *
+         */
+        protected function ___switchLang() {
+                $multilang = "";
+                foreach ($this->languages as $language) {
+                        if ($language->id == $this->session->translateLanguageID) continue;
+                        else $multilang .= "\t<a href=\"{$this->page->url}add/?language_id={$language->id}\">{$language->title}</a><br/>\n";
+                }
+                if ($multilang != "") $multilang = "\n<h2>".__("Choose another language to translate below")."</h2>\n<p>\n{$multilang}<p>\n";
+                return $multilang;
+        }
 
 	/**
 	 * Add a new class file to translate (creating a new textdomain file)
@@ -153,5 +160,32 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 		if($this->input->post->submit_add) $this->processAdd($field);
 		return $form->render().$this->switchLang();
+	}
+
+	/**
+	 *
+	 * install routine
+	 */
+	public function ___install() {
+ 		if(!$this->modules->get('ProcessLanguageTranslator')) {
+			throw new WireException(__("Installation of module Languages Support required"));
+			exit;
+		}
+		$p = $this->pages->get("template=admin, name=language-translator");
+		$p->status = 21;	//change status to visible in admin > setup
+		$p->process = "ProcessLanguageTranslatorPlus";
+		$p->save();
+	}
+
+	/**
+	 *
+	 * uninstall routine
+	 * default settings
+	 */
+	public function ___uninstall() {
+		$p = $this->pages->get("template=admin, name=language-translator");
+		$p->status = 1045;	//change status to hidden in admin > setup
+		$p->process = "ProcessLanguageTranslator";
+		$p->save();
 	}
 }
