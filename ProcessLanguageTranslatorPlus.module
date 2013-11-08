@@ -16,6 +16,7 @@
  * customized by Christoph Thelen 2013
  *
  * 21.10.13 install routine added (process for page 'language translator')
+ * 08.11.13 fixed bug in function __switchlang() undefined variable
  */
 
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
