@@ -22,7 +22,7 @@
  * 08.11.13 install routine changes status of page 'language translator' to visible
  */
 
-var_dump($this->page->status);
+//var_dump($this->page->status);
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 	public static function getModuleInfo() {
