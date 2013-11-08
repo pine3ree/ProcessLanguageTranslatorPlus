@@ -15,7 +15,7 @@
  *
  * customized by Christoph Thelen 2013
  *
- * 21.10.13 install routine added (process for page 'language translator' autoswitch)
+ * 21.10.13 install routine added (process for page 'language translator')
  */
 
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
