@@ -1,7 +1,7 @@
 Process Language Translator Plus
 ================================
 
-- Version: 1.0.0
+- Version: 1.0.1
 - Release State: beta
 - requires: ProcessLanguageTranslator
 
@@ -22,7 +22,8 @@ path: [/admin/setup/language-translator/add/](#stay)
 - else if there exists a session var (translateLanguageID) this will be used,
 - else as default-setting the language of logged-in user will be used.  
   change Language with GET Parameter like:  
-  [admin/setup/language-translator/add/?language_id=1022](#stay) 
+  [admin/setup/language-translator/add/?language_id=1022](#stay)  
+- process and status of page language-translator changes with installation
 
 ### Use
 If you are in the Language Translator [/admin/setup/language-translator/](#stay) you can see a List of Files which are already translated (in the set language).    
@@ -38,4 +39,8 @@ Via the Language-Switcher you can easily switch to the Translator of another Lan
 - output of further Information (translation files without original, duplikates)
 
 ### Updates
-- 21.10.13 install/ uninstall routine added/ change of process in page language-translator not necessary anymore
+- 21.10.13 install/ uninstall routine added/ change of process in page language-translator not necessary anymore 
+- 08.11.13 fixed bug in function __switchlang() undefined variable 
+- 08.11.13 fixed bug in function init() Error: Unknown/invalid language session->translateLanguageID has to be set 
+- 08.11.13 install routine changes status of page 'language translator' to visible 
+
