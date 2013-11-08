@@ -15,10 +15,14 @@
  *
  * customized by Christoph Thelen 2013
  *
+ * changelog
  * 21.10.13 install routine added (process for page 'language translator')
  * 08.11.13 fixed bug in function __switchlang() undefined variable
+ * 08.11.13 fixed bug in function init() Error: Unknown/invalid language session->translateLanguageID has to be set
+ * 08.11.13 install routine changes status of page 'language translator' to visible
  */
 
+var_dump($this->page->status);
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 	public static function getModuleInfo() {
@@ -43,8 +47,8 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	public function init() {
 		// should the following to be sanitized?
 		if($this->input->get->language_id) $this->setLanguage((int) $this->input->get->language_id);
-		else if($this->session->translateLanguageID) $this->setLanguage($this->session->translateLanguageID); 
-		else $this->setLanguage($this->user->language->id); 
+		if(!$this->session->translateLanguageID) $this->session->translateLanguageID = $this->user->language->id;
+		$this->setLanguage($this->session->translateLanguageID); 
 		// else throw new WireException("No language specified"); 
 	}
 
@@ -168,7 +172,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 			exit;
 		}
 		$p = $this->pages->get("template=admin, name=language-translator");
-		//$p->status == 20;	//no need to change status	
+		$p->status = 21;	//change status to visible in admin > setup
 		$p->process = "ProcessLanguageTranslatorPlus";
 		$p->save();
 	}
@@ -180,6 +184,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	 */
 	public function ___uninstall() {
 		$p = $this->pages->get("template=admin, name=language-translator");
+		$p->status = 1045;	//change status to hidden in admin > setup
 		$p->process = "ProcessLanguageTranslator";
 		$p->save();
 	}
