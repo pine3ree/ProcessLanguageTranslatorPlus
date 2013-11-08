@@ -158,10 +158,14 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	}
 
 	/**
-     *
-     * install routine
-     */
-    public function ___install() {
+	 *
+	 * install routine
+	 */
+	public function ___install() {
+ 		if(!$this->modules->get('ProcessLanguageTranslator')) {
+			throw new WireException(__("Installation of module Languages Support required"));
+			exit;
+		}
 		$p = $this->pages->get("template=admin, name=language-translator");
 		//$p->status == 20;	//no need to change status	
 		$p->process = "ProcessLanguageTranslatorPlus";
@@ -169,10 +173,10 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	}
 
 	/**
-     *
-     * uninstall routine
-     * default settings
-     */
+	 *
+	 * uninstall routine
+	 * default settings
+	 */
 	public function ___uninstall() {
 		$p = $this->pages->get("template=admin, name=language-translator");
 		$p->process = "ProcessLanguageTranslator";
