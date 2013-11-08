@@ -45,6 +45,6 @@ Via the Language-Switcher you can easily switch to the Translator of another Lan
 - 08.11.13 install routine changes status of page 'language translator' to visible
 
 ### Bug Report
-If you try to install the module from the modules manager without having module Language-Support installed before you will get the following php-error:
+If you try to install the module from the modules manager without having module Language-Support installed you will get the following php-error:
 *Error: Class 'ProcessLanguageTranslator' not found*
 
