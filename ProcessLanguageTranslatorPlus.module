@@ -18,7 +18,7 @@
  * changelog
  * 21.10.13 install routine added (process for page 'language translator')
  * 08.11.13 fixed bug in function __switchlang() undefined variable
- * 08.11.13 fixed bug in function init() Error: Unknown/invalid language session->translateLanguageID has to be set
+ * 08.11.13 fixed bug in function init() Error: Unknown/invalid language
  * 08.11.13 install routine changes status of page 'language translator' to visible
  */
 
@@ -45,7 +45,6 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	 *
 	 */
 	public function init() {
-		// should the following to be sanitized?
 		if($this->input->get->language_id) $this->setLanguage((int) $this->input->get->language_id);
 		if(!$this->session->translateLanguageID) $this->session->translateLanguageID = $this->user->language->id;
 		$this->setLanguage($this->session->translateLanguageID); 
@@ -167,10 +166,13 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	 * install routine
 	 */
 	public function ___install() {
+ 		/*
+ 		installation via modules manager doesn't work! any solutions?
  		if(!$this->modules->get('ProcessLanguageTranslator')) {
 			throw new WireException(__("Installation of module Languages Support required"));
 			exit;
 		}
+		*/
 		$p = $this->pages->get("template=admin, name=language-translator");
 		$p->status = 21;	//change status to visible in admin > setup
 		$p->process = "ProcessLanguageTranslatorPlus";
