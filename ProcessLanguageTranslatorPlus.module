@@ -22,14 +22,13 @@
  * 08.11.13 install routine changes status of page 'language translator' to visible
  */
 
-var_dump($this->page->status);
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Language Translator Plus', 
 			'summary' => __("Provides language translation capabilities for ProcessWire core and modules. Nearly the same like original Language Translator module. To add a translation you will get a drop-down list of all untranslated files instead of a text field."), 
-			'version' => 100, 
+			'version' => 101, 
 			'author' => 'Christoph Thelen',
 			'requires' => 'ProcessLanguageTranslator',
 			'href' => 'https://github.com/kixe/ProcessLanguageTranslatorPlus/blob/master/README.md'
