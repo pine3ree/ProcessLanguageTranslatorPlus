@@ -42,5 +42,9 @@ Via the Language-Switcher you can easily switch to the Translator of another Lan
 - 21.10.13 install/ uninstall routine added/ change of process in page language-translator not necessary anymore 
 - 08.11.13 fixed bug in function __switchlang() undefined variable 
 - 08.11.13 fixed bug in function init() Error: Unknown/invalid language session->translateLanguageID has to be set 
-- 08.11.13 install routine changes status of page 'language translator' to visible 
+- 08.11.13 install routine changes status of page 'language translator' to visible
+
+### Bug Report
+If you try to install the module from the modules manager without having module Language-Support installed before you will get the following php-error:
+*Error: Class 'ProcessLanguageTranslator' not found*
 
