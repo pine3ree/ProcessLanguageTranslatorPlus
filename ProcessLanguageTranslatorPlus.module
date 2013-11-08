@@ -1,5 +1,4 @@
 <?php
-
 /**
  * ProcessWire Language Translator Process 
  *
@@ -14,6 +13,7 @@
  * 
  *
  * customized by Christoph Thelen 2013
+ * fixed bug 08.11.13 in function __switchlang() undefined variable
  */
 
 class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
@@ -34,7 +34,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	 *
 	 * if language specified as a GET var in the URL, the Module will pick it up and use it (will be stored in session),
 	 * else, if there exists a session var (translateLanguageID) this will be used,
-	 * else as default-setting use the language of logged-in user will be used
+	 * else as default-setting the language of logged-in user will be used
 	 *
 	 */
 	public function init() {
@@ -107,12 +107,19 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 		return $result;
 	}
 
+	/**
+	 * switcher to other languages if exists
+	 * 
+	 * 
+	 */
 	protected function ___switchLang() {
+		$multilang = "";
 		foreach ($this->languages as $language) {
 			if ($language->id == $this->session->translateLanguageID) continue;
-			else $lang .= "\t<a href=\"{$this->page->url}add/?language_id={$language->id}\">{$language->title}</a><br/>\n";
+			else $multilang .= "\t<a href=\"{$this->page->url}add/?language_id={$language->id}\">{$language->title}</a><br/>\n";
 		}
-		return "\n<h2>".__("Choose another language to translate below")."</h2>\n<p>\n{$lang}<p>\n";
+		if ($multilang != "") $multilang = "\n<h2>".__("Choose another language to translate below")."</h2>\n<p>\n{$multilang}<p>\n";
+		return $multilang;
 	}
 
 	/**
