@@ -109,13 +109,20 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 		return $result;
 	}
 
-	protected function ___switchLang() {
-		foreach ($this->languages as $language) {
-			if ($language->id == $this->session->translateLanguageID) continue;
-			else $lang .= "\t<a href=\"{$this->page->url}add/?language_id={$language->id}\">{$language->title}</a><br/>\n";
-		}
-		return "\n<h2>".__("Choose another language to translate below")."</h2>\n<p>\n{$lang}<p>\n";
-	}
+        /**
+         * switcher to other languages if exists
+         *
+         *
+         */
+        protected function ___switchLang() {
+                $multilang = "";
+                foreach ($this->languages as $language) {
+                        if ($language->id == $this->session->translateLanguageID) continue;
+                        else $multilang .= "\t<a href=\"{$this->page->url}add/?language_id={$language->id}\">{$language->title}</a><br/>\n";
+                }
+                if ($multilang != "") $multilang = "\n<h2>".__("Choose another language to translate below")."</h2>\n<p>\n{$multilang}<p>\n";
+                return $multilang;
+        }
 
 	/**
 	 * Add a new class file to translate (creating a new textdomain file)
