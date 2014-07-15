@@ -80,7 +80,7 @@ class ProcessLanguageTranslatorPlus extends ProcessLanguageTranslator  {
 	            continue;
 	      }
 	      // select only .php .module or .inc
-	  		if (false == (strstr($file,'.php') || strstr($file,'.module')  || strstr($file,'.inc'))) {
+	  		if (false == preg_match('/\.(php|phtml|module|inc)$/', $file)) {
 	        // next Element
 	        continue;
 	      }
